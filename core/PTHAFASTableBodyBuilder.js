@@ -120,11 +120,17 @@ class PTHAFASTableBodyBuilder {
     let time = this.getDisplayDepartureTime(departure, delay);
 
     let cell = document.createElement("td");
-    cell.className = "pthTimeCell";
-    cell.appendChild(document.createTextNode(time));
+   
+    if (moment(time).isValid()) {
+      cell.className = "pthTimeCell";
+      cell.appendChild(document.createTextNode(time));
 
-    if (this.config.showAbsoluteTime) {
-      cell.appendChild(this.getDelaySpan(delay));
+      if (this.config.showAbsoluteTime) {
+        cell.appendChild(this.getDelaySpan(delay));
+      }
+    } else {
+      cell.className = "pthTimeCanceled";
+      cell.appendChild(document.createTextNode("Fällt aus"));
     }
 
     return cell;
