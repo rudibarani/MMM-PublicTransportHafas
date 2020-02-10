@@ -121,7 +121,7 @@ class PTHAFASTableBodyBuilder {
 
     let cell = document.createElement("td");
    
-    if (moment(time).isValid()) {
+    if (moment(delay).isValid()) {
       cell.className = "pthTimeCell";
       cell.appendChild(document.createTextNode(time));
 
